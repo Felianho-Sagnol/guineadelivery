@@ -6,13 +6,14 @@ use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model
+class OrderType extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded = [];
 
     public function orders()
     {
-        return $this->hasMany(Order::class,'user_id','id')->with('dishes');
+        return $this->hasMany(Order::class,'order_type_id','id');
     }
 }

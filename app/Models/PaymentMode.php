@@ -6,13 +6,13 @@ use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model
+class PaymentMode extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $guarded = [];
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class,'user_id','id')->with('dishes');
+    public function orders(){
+        return $this->hasMany(Order::class,'payement_mode_id','id');
     }
 }

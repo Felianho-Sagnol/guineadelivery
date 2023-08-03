@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function test(Request $request){
-        //$this->fakeAdminMaker();
+        $this->fakeAdminMaker();
         $data = [
             "name"=>"test",
         ];
@@ -18,19 +18,24 @@ class AuthController extends Controller
     public function login(Request $request){
         $admin = Admin::where([
             ['phone',$request->input('phone')],
-        ])->first();
+            ['role',$request->input('role')],
+        ])->with('restaurant')->first();
 
         $errorMessage = null;
         $hasError=false;
 
         if (empty($admin)) {
-            $errorMessage = "Aucun compte trouvé pour ce numéro de téléphone";
+            $errorMessage = "Aucun compte trouvé avec ces informations";
             $hasError=true;
         } else {
             if ($admin->password != sha1($request->input('password'))) {
                 $errorMessage = "Mot de passe incorrecte.";
                 $hasError=true;
-            } 
+            } else{
+                if($admin->password=="admin"){
+
+                }
+            }
         }
 
         $data = [
@@ -46,7 +51,7 @@ class AuthController extends Controller
 
         $user->firstname = "Sagno";
         $user->lastname = "Félix";
-        $user->phone = "0625248758";
+        $user->phone = "+224625248758";
         $user->email = "sagno@gmail.test";
         $user->password = sha1("01010101");
         $user->role = "super-admin";

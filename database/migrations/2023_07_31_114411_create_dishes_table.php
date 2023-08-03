@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->integer('available')->default(1);
             $table->integer('cookMinTime')->default(10);
+            $table->integer('cookMaxTime')->default(30);
             $table->string('description')->nullable();
             $table->double('rating', 8, 2)->default(0);
             $table->string('imageUrl');

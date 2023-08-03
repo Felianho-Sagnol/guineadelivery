@@ -28,9 +28,12 @@ return new class extends Migration
             $table->integer('enabled')->default(1);
             $table->string('email')->nullable();
             $table->double('rating', 8, 2)->default(0);
-            $table->double('discount', 8, 2)->default(0);
+            $table->double('discount')->default(0);
+            $table->double('discountFrom')->default(0);
             $table->string('imageUrl')->nullable();
             $table->integer('minAmountToOrder')->default(0);
+            $table->integer('cookMinTime')->default(10);
+            $table->integer('cookMaxTime')->default(30);
             $table->timestamp('created_at')->useCurrent();
         });
     }

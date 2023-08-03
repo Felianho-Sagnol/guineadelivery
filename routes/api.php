@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get(
     '/test',[AuthController::class, 'test']
 );
+
+//---------------users-------------------------------
 Route::post(
     '/user-login',[AuthController::class, 'login']
+);
+
+
+//---------------Restaurants-------------------------------
+Route::post(
+    '/restaurant-add',[RestaurantController::class, 'add']
+);
+Route::get(
+    '/restaurant-list',[RestaurantController::class, 'restaurants']
 );

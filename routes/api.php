@@ -32,8 +32,14 @@ Route::post(
 
 //---------------Restaurants-------------------------------
 Route::post(
-    '/restaurant-add',[RestaurantController::class, 'add']
+    '/restaurants/add',[RestaurantController::class, 'add']
 );
 Route::get(
-    '/restaurant-list',[RestaurantController::class, 'restaurants']
+    '/restaurants',[RestaurantController::class, 'restaurants']
+);
+Route::get(
+    '/restaurants/{id}',[RestaurantController::class, 'restaurant']
+);
+Route::get(
+    '/restaurants/delete/{id}',[RestaurantController::class, 'delete']
 );

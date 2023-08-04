@@ -44,6 +44,31 @@ return [
             'throw' => false,
         ],
 
+        'restaurants' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/restaurants'),
+            'url' => env('APP_URL') . '/storage/restaurants',
+            'visibility' => 'public',
+        ],
+        'categories' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/categories'),
+            'url' => env('APP_URL') . '/storage/categories',
+            'visibility' => 'public',
+        ],
+        'dishes' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/dishes'),
+            'url' => env('APP_URL') . '/storage/dishes',
+            'visibility' => 'public',
+        ],
+        'users' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/users'),
+            'url' => env('APP_URL') . '/storage/users',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

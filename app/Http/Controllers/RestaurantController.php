@@ -85,7 +85,8 @@ class RestaurantController extends Controller
     }
 
     public function restaurants(Request $request){
-        $restaurants = Restaurant::all();
+        //$restaurants = Restaurant::all();
+        $restaurants = Restaurant::with('categories','dishes','order_types','payment_modes')->get();
 
         $data = [
             'restaurants' => $restaurants,

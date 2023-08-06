@@ -9,27 +9,10 @@ use Illuminate\Support\Facades\Storage;
 class RestaurantController extends Controller
 {
     public function add(Request $request){
-        $imageUrl = "restaurant_avatar.jpeg";
-        $images_errors_count = 0;
+        $imageUrl = "";
         $hasError=false;
         $errorMessage = "";
-        // if ($request->hasFile('imageUrl')) {
-        //     $file = $request->file('imageUrl');
-        //     $extention = $file->getClientOriginalExtension();
-        //     if(!in_array($extention,['jpg','JPG','JPEG',"PNG","GIF", 'jpeg', 'png','gif'])){
-        //         $hasError=true;
-        //         $errorMessage = "Le format doit être type jpg , jpeg, png ou gif";
-        //     }else{
-        //         $imageUrl = date("Y-m-h-i-s")."-".time().'.'.$extention;
-        //         $destinationPath = public_path().'/assets/img/restaurants' ;
-        //         $file->move($destinationPath,$imageUrl);
-        //     }
-        // }else{
-        //     $hasError=true;
-        //     $errorMessage = "Aucune image choisi";
-        // }
-
-        
+       
         if ($request->hasFile('imageUrl')) {
             $file = $request->file('imageUrl');
             $extension = $file->getClientOriginalExtension();
@@ -72,6 +55,7 @@ class RestaurantController extends Controller
             $restaurant->imageUrl= $imageUrl;
             $restaurant->save();
 
+            $message="Le restaurant ".$restaurant->name." a été ajouté avec succès";
             $restaurant = Restaurant::where('id',$restaurant->id)->first();
         }
 
@@ -79,6 +63,7 @@ class RestaurantController extends Controller
         $data = [
             "hasError"=>$hasError,
             'errorMessage' => $errorMessage,
+            'message' => $message,
             'restaurant' => $restaurant,
         ];
         return response()->json($data,200);

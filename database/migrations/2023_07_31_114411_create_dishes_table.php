@@ -27,7 +27,7 @@ return new class extends Migration
             $table->double('rating', 8, 2)->default(0);
             $table->string('imageUrl');
             $table->timestamp('created_at')->useCurrent();
-        });
+        });//price,name,category,image,cookMinTime,cookMaxTime,description
     }
 
     /**
